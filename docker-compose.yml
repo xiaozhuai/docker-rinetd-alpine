@@ -1,0 +1,12 @@
+version: '2'
+services:
+    rinetd:
+#        image: xiaozhuai/rinetd-alpine:latest
+        build: .
+        environment:
+            FORWARDING_RULES: >
+                0.0.0.0     8080    github.com   80;
+                0.0.0.0     8888    github.com   80;
+        ports:
+            - 8080:8080
+            - 8888:8888
