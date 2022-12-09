@@ -1,6 +1,7 @@
 name: build-docker-image
 
 on:
+    workflow_dispatch:
     push:
         branches: [ master ]
     pull_request:
@@ -25,5 +26,15 @@ jobs:
                 uses: docker/build-push-action@v3
                 with:
                     platforms: linux/amd64,linux/386,linux/arm64/v8,linux/arm/v7,linux/arm/v6
-                    push: true
+                    push: ${{ github.event_name != 'pull_request' }}
                     tags: xiaozhuai/rinetd-alpine:latest
+            -   uses: actions/checkout@v3
+                if: ${{ github.event_name != 'pull_request' }}
+            -   name: Docker Hub Description
+                uses: peter-evans/dockerhub-description@v3
+                if: ${{ github.event_name != 'pull_request' }}
+                with:
+                    username: ${{ secrets.DOCKERHUB_USERNAME }}
+                    password: ${{ secrets.DOCKERHUB_TOKEN }}
+                    repository: xiaozhuai/rinetd-alpine
+                    short-description: ${{ github.event.repository.description }}
