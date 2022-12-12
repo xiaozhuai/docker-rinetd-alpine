@@ -25,7 +25,7 @@ jobs:
             -   name: Build and push
                 uses: docker/build-push-action@v3
                 with:
-                    platforms: linux/amd64,linux/386,linux/arm64/v8,linux/arm/v7,linux/arm/v6
+                    platforms: linux/amd64,linux/arm64/v8,linux/arm/v7,linux/ppc64le,linux/s390x
                     push: ${{ github.event_name != 'pull_request' }}
                     tags: xiaozhuai/rinetd-alpine:latest
             -   uses: actions/checkout@v3

@@ -18,4 +18,4 @@ FROM alpine:latest
 COPY --from=builder /tmp/rinetd/rinetd /usr/sbin/rinetd
 COPY entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
