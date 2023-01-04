@@ -7,7 +7,7 @@ RUN set -ex \
         autoconf \
         automake \
     && cd /tmp \
-    && git clone "https://github.com/samhocevar/rinetd" \
+    && git clone --depth=1 "https://github.com/samhocevar/rinetd" \
     && cd rinetd \
     && ./bootstrap \
     && ./configure --prefix=/usr \
