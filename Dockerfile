@@ -11,7 +11,8 @@ RUN set -ex \
     && cd rinetd \
     && ./bootstrap \
     && ./configure --prefix=/usr \
-    && make -j $(nproc)
+    && make -j $(nproc) \
+    && strip rinetd
 
 FROM alpine:latest
 
